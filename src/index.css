@@ -1,0 +1,218 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 45 30% 98%;
+    --foreground: 20 14.3% 4.1%;
+
+    --card: 45 30% 99%;
+    --card-foreground: 20 14.3% 4.1%;
+
+    --popover: 45 30% 99%;
+    --popover-foreground: 20 14.3% 4.1%;
+
+    --primary: 40 60% 70%;
+    --primary-foreground: 26 83.3% 14.1%;
+
+    --secondary: 30 15% 96.1%;
+    --secondary-foreground: 24 9.8% 10%;
+
+    --muted: 45 30% 96%;
+    --muted-foreground: 25 5.3% 44.7%;
+
+    --accent: 30 15% 96.1%;
+    --accent-foreground: 24 9.8% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+
+    --border: 30 15% 94.1%;
+    --input: 30 15% 94.1%;
+    --ring: 40 60% 70%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 45 30% 99%;
+    --sidebar-foreground: 20 14.3% 4.1%;
+    --sidebar-primary: 40 60% 70%;
+    --sidebar-primary-foreground: 26 83.3% 14.1%;
+    --sidebar-accent: 30 15% 96.1%;
+    --sidebar-accent-foreground: 24 9.8% 10%;
+    --sidebar-border: 30 15% 94.1%;
+    --sidebar-ring: 40 60% 70%;
+  }
+
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 60 9.1% 97.8%;
+
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+
+    --primary: 40 60% 70%;
+    --primary-foreground: 26 83.3% 4.1%;
+
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: 40 60% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium tracking-wide;
+  }
+
+  h1 {
+    @apply text-4xl sm:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl sm:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl sm:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl sm:text-2xl;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply backdrop-blur-md bg-white/70 dark:bg-black/40 border border-white/20 shadow-md;
+  }
+
+  .elegant-shadow {
+    @apply shadow-[0_8px_30px_rgb(0,0,0,0.12)];
+  }
+
+  .product-card-hover {
+    @apply transition-all duration-300 ease-elegant transform hover:-translate-y-2 hover:shadow-lg;
+  }
+
+  .nav-link {
+    @apply relative px-3 py-2 transition-colors duration-200 hover:text-gold;
+  }
+
+  .nav-link::after {
+    @apply content-[''] absolute left-0 bottom-0 w-0 h-[1px] bg-gold transition-all duration-300 ease-elegant;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .btn-shine {
+    @apply relative overflow-hidden;
+  }
+
+  .btn-shine::before {
+    @apply content-[''] absolute top-0 left-0 w-[40px] h-full bg-white/30 -skew-x-[20deg] transform-gpu;
+    animation: shine 4s infinite linear;
+  }
+
+  .filter-checkbox {
+    @apply w-5 h-5 border-2 border-gold/50 rounded-sm checked:bg-gold/80 checked:border-0 transition duration-200 cursor-pointer;
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(300%) skewX(-20deg);
+  }
+}
+
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+/* For product image hover zoom effect */
+.zoom-container {
+  overflow: hidden;
+}
+
+.zoom-image {
+  transition: transform 1s ease;
+}
+
+.zoom-container:hover .zoom-image {
+  transform: scale(1.05);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme('colors.cream.light');
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.gold.DEFAULT');
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.gold.dark');
+}
